@@ -9,10 +9,14 @@ default: &default
 development:
   <<: *default
   database: ecommerce_api_development
+  user: manoel
+  password: manoel
 
 test:
   <<: *default
   database: ecommerce_api_test
+  user: manoel
+  password: manoel
 
 production:
   <<: *default
