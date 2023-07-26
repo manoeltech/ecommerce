@@ -14,6 +14,7 @@ gem 'rack-cors', '~> 1.1.1'
 
 gem 'annotate'
 
+gem 'jbuilder', '~> 2.10.1'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
