@@ -21,11 +21,11 @@ Bundler.require(*Rails.groups)
 module EcommerceApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 6.0
 
     config.i18n_default_locale = :'pt-BR'
-    config.i18n_load_path = Dir[Rails.root.join('config/locales/**/*.{rb, yml}')]
-
+    config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb, yml}')]
+    
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -38,5 +38,12 @@ module EcommerceApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.legacy_connection_handling = false
+
+    config.autoload_paths += %W["#{config.root}/app/validators/"]
+
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_namespace_key'
+
   end
 end
